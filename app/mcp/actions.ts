@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 import {
   createClient,
   executeRequest,
@@ -14,12 +14,12 @@ import {
   ServerConfig,
   ServerStatusResponse,
 } from "./types";
-import fs from "fs/promises";
-import path from "path";
+// import fs from "fs/promises";
+// import path from "path";
 import { getServerSideConfig } from "../config/server";
 
 const logger = new MCPClientLogger("MCP Actions");
-const CONFIG_PATH = path.join(process.cwd(), "app/mcp/mcp_config.json");
+// const CONFIG_PATH = path.join(process.cwd(), "app/mcp/mcp_config.json");
 
 const clientsMap = new Map<string, McpClientData>();
 
@@ -353,24 +353,25 @@ export async function executeMcpAction(
 
 // 获取 MCP 配置文件
 export async function getMcpConfigFromFile(): Promise<McpConfigData> {
-  try {
-    const configStr = await fs.readFile(CONFIG_PATH, "utf-8");
-    return JSON.parse(configStr);
-  } catch (error) {
-    logger.error(`Failed to load MCP config, using default config: ${error}`);
-    return DEFAULT_MCP_CONFIG;
-  }
+  // try {
+    // const configStr = await fs.readFile(CONFIG_PATH, "utf-8");
+    // return JSON.parse(configStr);
+  // } catch (error) {
+    // logger.error(`Failed to load MCP config, using default config: ${error}`);
+    // return DEFAULT_MCP_CONFIG;
+  // }
+  return DEFAULT_MCP_CONFIG;
 }
 
 // 更新 MCP 配置文件
 async function updateMcpConfig(config: McpConfigData): Promise<void> {
-  try {
-    // 确保目录存在
-    await fs.mkdir(path.dirname(CONFIG_PATH), { recursive: true });
-    await fs.writeFile(CONFIG_PATH, JSON.stringify(config, null, 2));
-  } catch (error) {
-    throw error;
-  }
+  // try {
+  //   // 确保目录存在
+  //   await fs.mkdir(path.dirname(CONFIG_PATH), { recursive: true });
+  //   await fs.writeFile(CONFIG_PATH, JSON.stringify(config, null, 2));
+  // } catch (error) {
+  //   throw error;
+  // }
 }
 
 // 检查 MCP 是否启用
